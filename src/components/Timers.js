@@ -12,11 +12,7 @@ class Timers extends Component {
     let minutes = Math.floor( e.target.value / fpm )
     let seconds = Math.floor(e.target.value%fpm / this.props.fps)
     let frames = Math.floor(e.target.value%fpm%this.props.fps)
-    // let frames = (e.target.value%this.props.fps).toFixed(0);
-    // let seconds = (e.target.value/this.props.fps).toFixed(0);
-    // let minutes = (seconds/60).toFixed(0);
- 
-    console.log(minutes, seconds, frames, fpm)
+
     var regexp = /^[0-9]*$/g;
     var result = regexp.test(e.target.value);
     if(result === true){
