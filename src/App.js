@@ -9,11 +9,13 @@ class App extends Component {
   }
 
   changeFPS = (e) => {
+    var value = e.target.value;
     var regexp = /^[0-9]*$/g;
-    var result = regexp.test(e.target.value);
+    var result = regexp.test(value);
+    if(result === true && value < 1){ value=1}
     if(result === true){
       this.setState({
-        fps: e.target.value,
+        fps: value,
       })
     } 
   }
