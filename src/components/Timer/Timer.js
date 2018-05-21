@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class Timer extends Component {
   state={
-    value: this.props.value
+    value: this.props.value,
+    error: false
   }
 
   componentWillReceiveProps(nextProps){
@@ -19,32 +20,35 @@ class Timer extends Component {
   }
   
   handleChange = (e) => {
-    this.setState({
-      value: e.target.value
-    })
+    var regexp = /^[0-9]*$/g;
+    var result = regexp.test(e.target.value);
+    if(result===true){
+      this.setState({
+        value: e.target.value,
+        error: false
+      })
+    } else {
+      this.setState({
+        value: e.target.value,
+        error: true
+      })
+    }
   }
 
   render() {
-    console.log(this.props)
     return (
       <form className='forms' onSubmit={this.handleSubmit}>
-        <input className='inputs fontStuff' value={this.state.value} onChange={this.handleChange} ref={el => this.element = el}/>
+        <div style={{ fontSize: '12px'}}>
+          <label>{this.props.type}</label>
+        </div>
+        <input  className={this.state.error === true? 'inputs fontStuff inputError' : 'inputs fontStuff inputBorder'} 
+                value={this.state.value} 
+                onChange={this.handleChange} 
+                ref={el => this.element = el}/>
       </form>
     );
   }
 }
 
 export default Timer;
-
-
-
-
-// const Input = (props) => {
-//   console.log(props)
-//   return (
-//     <React.Fragment>
-//         
-//     </React.Fragment>
-//   );
-// };
 
