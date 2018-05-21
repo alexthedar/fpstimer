@@ -12,12 +12,12 @@ class Timers extends Component {
     var result = regexp.test(e);
     if(result === true){
       this.setState({
-        totalFrames: e,
+        totalFrames: this.state.totalFrames+e,
         lettersEntered: false
       })
     } else {
       this.setState({
-        totalFrames: 0,
+        totalFrames: this.state.totalFrames,
         lettersEntered: true
       })
     }
