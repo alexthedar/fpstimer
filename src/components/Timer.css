@@ -9,5 +9,8 @@
 .fontStuff {
   font-size: 20px;
   color: grey;
+}
 
+.forms{
+  display: inline-block;
 }

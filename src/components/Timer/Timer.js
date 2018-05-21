@@ -2,20 +2,49 @@ import React, { Component } from 'react';
 
 class Timer extends Component {
   state={
-
+    value: this.props.value
   }
-  render() {
-    // let fpm = this.props.fps*60;
-    // let minutes = Math.floor( e.target.value / fpm )
-    // let seconds = Math.floor(e.target.value%fpm / this.props.fps)
-    // let frames = Math.floor(e.target.value%fpm%this.props.fps)
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.value !== nextProps.value){
+      this.setState({
+        value: nextProps.value
+      })     
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.setTotalFrames(this.state.value*this.props.multiplier)
+  }
+  
+  handleChange = (e) => {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
+  render() {
+    console.log(this.props)
     return (
-      <React.Fragment>
-        <input className='inputs fontStuff' value={this.props.totalFrames} onChange={this.props.handleInput} />
-      </React.Fragment>
+      <form className='forms' onSubmit={this.handleSubmit}>
+        <input className='inputs fontStuff' value={this.state.value} onChange={this.handleChange} ref={el => this.element = el}/>
+      </form>
     );
   }
 }
 
 export default Timer;
+
+
+
+
+// const Input = (props) => {
+//   console.log(props)
+//   return (
+//     <React.Fragment>
+//         
+//     </React.Fragment>
+//   );
+// };
+
